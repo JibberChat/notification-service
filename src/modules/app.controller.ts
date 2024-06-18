@@ -7,7 +7,15 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @MessagePattern('notification')
-  getHello(): string {
-    return this.appService.getHello();
+  async sendNotifications(data: {
+    pushTokens: string[];
+    title?: string;
+    body: string;
+    data: {
+      url?: string;
+      metadata?: Record<string, unknown>;
+    };
+  }): Promise<{ message: string }> {
+    return await this.appService.sendNotifications({ ...data });
   }
 }
