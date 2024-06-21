@@ -1,0 +1,71 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'  # Use LTS version of Node.js
+
+      - name: Install pnpm
+        run: npm install -g pnpm@7  # Ensure pnpm executable is installed to the global scope
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Run tests
+        run: pnpm run test
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'  # Use LTS version of Node.js
+
+      - name: Install pnpm
+        run: npm install -g pnpm@7  # Ensure pnpm executable is installed to the global scope
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Run linting
+        run: pnpm run lint
+
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'  # Use LTS version of Node.js
+
+      - name: Install pnpm
+        run: npm install -g pnpm@7  # Ensure pnpm executable is installed to the global scope
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Run type checking
+        run: pnpm run typecheck
