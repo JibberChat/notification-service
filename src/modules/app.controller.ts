@@ -11,7 +11,7 @@ export class AppController {
     pushTokens: string[];
     title?: string;
     body: string;
-    data: {
+    data?: {
       url?: string;
       metadata?: Record<string, unknown>;
     };

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { green, yellow } from 'chalk';
 import { catchError, tap } from 'rxjs';
 

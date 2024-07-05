@@ -10,7 +10,7 @@ type SendNotifications = {
   pushTokens: string[];
   title?: string;
   body: string;
-  data: {
+  data?: {
     url?: string;
     metadata?: Record<string, unknown>;
   };
@@ -26,7 +26,7 @@ export class AppService {
     pushTokens,
     title: notificationTitle,
     body,
-    data,
+    data = {},
   }: SendNotifications) {
     const title = notificationTitle ?? 'Leets';
     const messages: ExpoPushMessage[] = [];
