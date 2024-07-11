@@ -6,7 +6,7 @@ import { MessagePattern } from '@nestjs/microservices';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @MessagePattern('notification')
+  @MessagePattern({ cmd: 'sendNotifications' })
   async sendNotifications(data: {
     pushTokens: string[];
     title?: string;
@@ -16,6 +16,7 @@ export class AppController {
       metadata?: Record<string, unknown>;
     };
   }): Promise<{ message: string }> {
+    console.log(data);
     return await this.appService.sendNotifications({ ...data });
   }
 }

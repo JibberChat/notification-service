@@ -1,4 +1,4 @@
-import { NestFactory, HttpAdapterHost } from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 
 import { AppModule } from './modules/app.module';
@@ -23,8 +23,7 @@ async function bootstrap() {
   );
   const loggerService = app.get(LoggerService);
 
-  const { httpAdapter } = app.get(HttpAdapterHost);
-  app.useGlobalFilters(new GlobalExceptionFilter(httpAdapter, loggerService));
+  app.useGlobalFilters(new GlobalExceptionFilter(loggerService));
   app.useGlobalInterceptors(new LoggerInterceptor());
 
   await app.listen();
